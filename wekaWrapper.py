@@ -157,7 +157,7 @@ def j48pla_to_aig(j48pla_path, path="tmp_iwls2020/J48_AIG/", faz_resyn2=False):
         return gera_abc_aig(j48pla_path, "%s%s" % (path, j48pla_path.split("/")[-1].replace(".pla", ".aig")))
 
 
-def j48tree_to_pla(j48_path, pla_ins, pla_outs, pla_path="tmp_iwls2020/J48_PLA/", path="J48/"):
+def j48tree_to_pla(j48_path, pla_ins, pla_outs, pla_path="tmp_iwls2020/J48_PLA/", path="tmp_iwls2020/J48/"):
     with open("%s%s" % (path, j48_path), "r") as arquivo:
         weka_output = arquivo.read().encode().split(b"\n\n")
         if b"\n------------------\n:" in weka_output[0]:
