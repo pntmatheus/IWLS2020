@@ -25,6 +25,7 @@ def check_tmp_directory():
     for d in dirs:
         check_dir_exists(d)
 
+
 def main(argv):
 
     parser = argparse.ArgumentParser(description="IWLS 2020 Contest AIG function predictor",
