@@ -24,6 +24,6 @@ def best_aig(number):
 if __name__ == "__main__":
     set_start_method("spawn")
     tempo_inicial = time()
-    with Pool(processes=2) as pool:
-        pool.map(best_aig, [0, 1])
+    with Pool(processes=50) as pool:
+        pool.map(best_aig, range(100))
     print("Runtime: " + str(time()-tempo_inicial))
