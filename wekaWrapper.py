@@ -326,6 +326,9 @@ def verifica_melhor_aig(linhas, cross_index, and_index, path_index):
 
     for l in linhas:
         dados = l.split(";;")
+
+        # Por causa do JAVA no Medusa da UFPEL...
+        dados[cross_index] = dados[cross_index].replace(",", ".")
         cross_v = float(dados[cross_index])
         if cross_v > flag:
             if int(dados[and_index]) < 5000:
