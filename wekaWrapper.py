@@ -396,7 +396,10 @@ def gera_linhas_iwls2020_output(options, classifiers, pla_obj, mltest_list):
     return linhas
 
 
-def gera_melhor_aig(pla_obj, mltest_list='', out_filename='', verbose=False, supress=False, persist=False):
+def gera_melhor_aig(pla_obj,
+                    mltest_list='',
+                    out_filename='',
+                    verbose=False, supress=False, persist=False, tmp_clean=False):
 
     tempo_inicial = time.time()
 
@@ -455,9 +458,10 @@ def gera_melhor_aig(pla_obj, mltest_list='', out_filename='', verbose=False, sup
             print(linha)
 
     # Clean tmp_iwls2020 directory
-    for root, dirs, files in os.walk("tmp_iwls2020", topdown=False):
-        for name in files:
-            os.remove(os.path.join(root, name))
+    if not tmp_clean:
+        for root, dirs, files in os.walk("tmp_iwls2020", topdown=False):
+            for name in files:
+                os.remove(os.path.join(root, name))
 
     if not supress:
         print("AIG successfully created: %s" % os.path.realpath(filename))

@@ -4,7 +4,7 @@
 
 int main(int argc,char *argv[]){
 	int l1[10000];// armazena valores de cada
-	char l2[800];
+	char l2[10000][20];
 	char linha[30];
 	
 	int atributo;
@@ -26,19 +26,18 @@ int main(int argc,char *argv[]){
   	FILE *part;
   	FILE *aag;
 	
-  	char *spath= malloc (50);
-  	char *dpath= malloc (50);
+  	char *spath= malloc (100);
+  	char *dpath= malloc (100);
 	
   	sprintf(spath, "tmp_iwls2020/PART/%s.part",argv[2]);
 	//printf("1-%d \n 2-%s\n",inputs,spath);	
 	part = fopen(spath, "r");
-  	sprintf(dpath, "tmp_iwls2020/ex.aux");		
+  	sprintf(dpath, "tmp_iwls2020/AAG/%s.aag",argv[2]);	
 	aag = fopen(dpath, "w");
 		
 	//printf("%d - %d\n",inputs,inputs);
 	
 	i=0;
-	
 	while(!feof(part)){
 		//printf("TESTE\n");
 		fgets(linha, 30, part);
@@ -59,8 +58,8 @@ int main(int argc,char *argv[]){
 			atributo= atributo + 1 - (linha[5+t]-'0');
 			
 			if(i>0){
-				sprintf(l2,"\n%d %d %d",v*2,atributo2,atributo);
-				fputs(l2,aag);
+				sprintf(l2[contador],"\n%d %d %d",v*2,atributo2,atributo);
+				contador++;
 				atributo2= v*2;
 				v++;
 			}
@@ -68,7 +67,7 @@ int main(int argc,char *argv[]){
 				atributo2 = atributo;
 			
 			i++;
-			printf("l%d ",i);
+			//printf("l%d ",i);
 			if(linha[6+t] ==':'){
 				output = linha[8+t]-'0';
 				
@@ -118,8 +117,8 @@ int main(int argc,char *argv[]){
 				else
 					atributo2++;
 			}
-			sprintf(l2,"\n%d %d %d",v*2,atributo2,atributo);
-			fputs(l2,aag);
+			sprintf(l2[contador],"\n%d %d %d",v*2,atributo2,atributo);
+			contador++;
 			atributo2= v*2;
 			if(l1[(i*2)+1]==1)
 				atributo2+=1;
@@ -132,14 +131,7 @@ int main(int argc,char *argv[]){
 	//printf("total = %d\n",v-1);
 	
 	
-	fclose(part);
-	fclose(aag);
-	
-	
-	sprintf(spath, "tmp_iwls2020/ex.aux");		
-	part = fopen(spath, "r");
-  	sprintf(dpath, "tmp_iwls2020/AAG/%s.aag",argv[2]);	
-	aag = fopen(dpath, "w");
+  	
 	
 	
 	sprintf(linha,"aag %d %d 0 1 %d\n",v,inputs,v-1-inputs);
@@ -149,13 +141,12 @@ int main(int argc,char *argv[]){
 		fputs(linha,aag);
 	}
 	
-	sprintf(linha,"%d\n",atributo2);
+	sprintf(linha,"%d",atributo2);
 	fputs(linha,aag);
-	fgets(linha,50,part);
-	while(!feof(part)){
-		fgets(linha,50,part);
-		fputs(linha,aag);
-	}
+	for(i=0;i<contador;i++){
+		//printf("pf%d\n - ",i);
+		fputs(l2[i],aag);
+	}	
 	sprintf(linha,"\n");
 	fputs(linha,aag);
 	fclose(part);

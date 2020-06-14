@@ -42,6 +42,7 @@ def main(argv):
                         dest="mltests", nargs='+', metavar=("pla_file1", "pla_fileN"))
     parser.add_argument("--supress", help="Supress output messages", action="store_true")
     parser.add_argument("--persist", help="Persist all option files in persist_iwls folder", action="store_true")
+    parser.add_argument("--dont-clean-tmp", help="Option for multiprocessing goal", action="store_true")
 
     result = parser.parse_args()
 
@@ -49,6 +50,7 @@ def main(argv):
     out_file = result.output_file
     v_mode = result.verbose
     mltest_files = result.mltests
+    dont_clean = result.dont_clean_tmp
 
     pla_obj = pla_obj_factory(in_file)
 
@@ -57,7 +59,8 @@ def main(argv):
                     mltest_list=mltest_files,
                     out_filename=out_file,
                     persist=result.persist,
-                    verbose=v_mode)
+                    verbose=v_mode,
+                    tmp_clean=dont_clean)
 
 
 if __name__ == "__main__":
