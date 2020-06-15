@@ -3,9 +3,9 @@
 #include <string.h>
 
 int main(int argc,char *argv[]){
-	int l1[10000];// armazena valores de cada
-	char l2[10000][20];
-	char linha[30];
+	int l1[50000];// armazena valores de cada
+	char l2[200000][25];
+	char linha[50];
 	
 	int atributo;
 	int atributo2;
@@ -40,7 +40,7 @@ int main(int argc,char *argv[]){
 	i=0;
 	while(!feof(part)){
 		//printf("TESTE\n");
-		fgets(linha, 30, part);
+		fgets(linha, 50, part);
 		//printf("TESTE\n");
 		if (linha[0] == 'a'){
 			atributo =linha[1]-'0';
@@ -60,6 +60,7 @@ int main(int argc,char *argv[]){
 			if(i>0){
 				sprintf(l2[contador],"\n%d %d %d",v*2,atributo2,atributo);
 				contador++;
+
 				atributo2= v*2;
 				v++;
 			}
@@ -78,7 +79,7 @@ int main(int argc,char *argv[]){
 				l1[((regras)*2)+1]=output;
 				
 				regras++;
-				printf("regra %d = %d - %d\n",regras-1,l1[(regras-1)*2],output);
+				//printf("regra %d = %d - %d\n",regras-1,l1[(regras-1)*2],output);
 				i=0;
 			}
 		}
