@@ -18,6 +18,7 @@ def best_aig(number):
                             "iwls_competition_0323/ex%02d.train.pla" % number,
                             "iwls_competition_0323/ex%02d.valid.pla" % number,
                             "--dont-clean-tmp",
+                            "--supress",
                             "--verbose"], stderr=subprocess.PIPE)
 
     with open("Contest_AIGs_INFO/ex%02d.txt" % number, "w") as file:
@@ -29,5 +30,5 @@ if __name__ == "__main__":
     tempo_inicial = time()
     with Pool(processes=2) as pool:
         #pool.map(best_aig, range(100))
-        pool.map(best_aig, [0,1,2])
+        print(pool.map(best_aig, [0,1]))
     print("Runtime: " + str(time()-tempo_inicial))
