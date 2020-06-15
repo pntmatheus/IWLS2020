@@ -433,47 +433,38 @@ def gera_melhor_aig(pla_obj,
                     ["-M", "5", "-C", best_c],
                     ["-M", "10", "-C", best_c]]
 
-    #print("comecei os dinamicos...")
     new_lines = gera_linhas_iwls2020_output(dynamic_opts, [best_classifier], pla_obj, mltest_list)
 
     linhas = linhas + new_lines
 
-    #print("estou verificando os melhores com os dinamicos....")
     melhor = verifica_melhor_aig(linhas, 0, 1, -1)
 
-    #print("Entrei no FOR para marcar o melhor...")
     for a, linha in enumerate(linhas):
         if melhor in linha:
             linhas[a] = linhas[a] + ";;<====BEST_OPTION"
 
-    #print("Verificando se solicitaram para alterar o nome...")
     if out_filename:
         filename = out_filename
     else:
         filename = "%s.aig" % pla_obj.get_nome()
 
-    #print("Copiando o melhor para o arquivo...")
     shutil.copy(melhor, filename)
 
-    #print("Eh pra persistir...")
     if persist:
         shutil.copytree("tmp_iwls2020", "persist_iwls2020", dirs_exist_ok=True)
 
-    #print("Verboso?...")
     if verbose:
         for linha in linhas:
             print(linha)
 
-    #print("Limpa tmp??...")
     # Clean tmp_iwls2020 directory
     if not tmp_clean:
         for root, dirs, files in os.walk("tmp_iwls2020", topdown=False):
             for name in files:
                 os.remove(os.path.join(root, name))
 
-    #print("Supress??...")
     if not supress:
         print("AIG successfully created: %s" % os.path.realpath(filename))
         print("Runtime (secs) %f " % (time.time() - tempo_inicial))
 
-    print("%s OK!!" % pla_obj.get_nome)
+    print("%s OK!!" % pla_obj.get_nome())
