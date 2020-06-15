@@ -13,7 +13,6 @@ def best_aig(number):
                             "PLA_files/ex%02d.total.pla" % number,
                             "-o",
                             "Contest_AIGs/ex%02d.aig" % number,
-                            "--persist",
                             "--mltest",
                             "iwls_competition_0323/ex%02d.train.pla" % number,
                             "iwls_competition_0323/ex%02d.valid.pla" % number,
@@ -28,7 +27,7 @@ def best_aig(number):
 if __name__ == "__main__":
     set_start_method("spawn")
     tempo_inicial = time()
-    with Pool(processes=40) as pool:
+    with Pool(processes=50) as pool:
         pool.map(best_aig, range(100))
         #print(pool.map(best_aig, [0,1]))
     print("Runtime: " + str(time()-tempo_inicial))
