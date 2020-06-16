@@ -3,6 +3,5 @@ import os
 if __name__ == "__main__":
     for root, dirs, files in os.walk("Contest_AIGs_INFO", topdown=False):
         for name in files:
-            os.remove(os.path.join(root, name))
             with open(os.path.join(root, name), "r") as arquivo:
                 print(arquivo.read())
