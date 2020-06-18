@@ -1,2 +1,2 @@
 *.aig
-abc
+tools/abc

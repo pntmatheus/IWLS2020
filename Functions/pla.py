@@ -2,7 +2,7 @@ import re
 import os
 from typing import Optional, List
 
-from termo import Termo
+from Functions.termo import Termo
 
 
 def pla_obj_factory(pla_path):

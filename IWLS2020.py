@@ -3,7 +3,7 @@ import sys
 import os
 
 from Functions.pla import pla_obj_factory
-from wekaWrapper import gera_melhor_aig
+from Functions.wekaWrapper import gera_melhor_aig
 
 
 def check_tmp_directory():
