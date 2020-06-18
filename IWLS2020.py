@@ -2,7 +2,7 @@ import argparse
 import sys
 import os
 
-from pla import pla_obj_factory
+from Functions.pla import pla_obj_factory
 from wekaWrapper import gera_melhor_aig
 
 

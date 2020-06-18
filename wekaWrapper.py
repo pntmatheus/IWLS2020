@@ -6,7 +6,7 @@ import shutil
 
 from scriptABCFunctions import get_mltest_values, get_abc_ps_aig, faz_resyn2
 from scriptABCFunctions import gera_abc_aig, abc_mltest_aig
-from pla import pla_obj_factory
+from Functions.pla import pla_obj_factory
 from subprocess import check_output
 
 

@@ -1,7 +1,7 @@
 import time
 import bisect
 
-from pla import Pla, pla_obj_factory
+from Functions.pla import pla_obj_factory
 
 
 def pega_mais_leva_pra_um(qt_inputs, termos, ja_contadas=False):

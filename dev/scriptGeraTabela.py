@@ -1,6 +1,6 @@
 from scriptEspressoFunctions import *
 from scriptABCFunctions import *
-from pla import Pla,pla_obj_factory
+from Functions.pla import pla_obj_factory
 
 
 def retorna_linha_tabela(caminho, pla_original, nome_saida, timeout):
