@@ -1,6 +1,4 @@
 # IWLS2020
-IWLS2020 Contest
-
 The developed software reads a PLA file as input and creates an AIG file as output.
 We used Python as the principal programming language, but we also used JAVA and C languages as part of the solution.
 To try to get the unknown boolean function, the proposed solution uses J48 and PART Artificial Intelligence classifiers.
