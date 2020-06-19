@@ -1,2 +1,4 @@
 *.aig
 tools/abc
+tools/aigtoaig
+tools/parttoaag
