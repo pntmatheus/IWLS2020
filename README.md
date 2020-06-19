@@ -29,10 +29,11 @@ optional arguments:
                         "<accuracy;;AIG_ANDs;;AIG_Depth;;runtime;;tmp_file>" (Default mode) or
                         "<accuracy;;AIG_ANDs;;mltest_file1;;...;;mltest_fileN;;AIG_Depth;;runtime;;tmp_file>"
                         (Mltest mode)
+  ```bash
   --mltest pla_file1 [pla_fileN ...]
                         Especial mode to eval generated AIG against PLA files
   --supress             Supress output messages
   --persist             Persist all option files in persist_iwls folder
-  --dont-clean-tmp      Option for multiprocessing goal
-
+  --dont-clean-tmp      Option for multiprocessing goal  
 Usage example: python3.8 IWLS2020.py -i ex00.pla -o my_ex00.aig
+```
