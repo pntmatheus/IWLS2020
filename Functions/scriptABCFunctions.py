@@ -11,21 +11,21 @@ def gera_abc_aig_old(arquivo_pla, nome_aig):
     # strash   -->
     # balance  -->
     # write    -->
-    abc_cmd = subprocess.Popen(shlex.split("./abc -c \'read_pla %s;"
-                                                      'strash;'
-                                                      'balance;'                                              
-                                                      'balance;'
-                                                      'balance;'
-                                                      'balance;'
-                                                      'balance;'                                              
-                                                      'balance;'
-                                                      'balance;'
-                                                      'balance;'
-                                                      'balance;'                                              
-                                                      'balance;'
-                                                      'balance;'
-                                                      'balance;'
-                                                      "write %s\'" % (arquivo_pla,nome_aig)),
+    abc_cmd = subprocess.Popen(shlex.split("./tools/abc -c \'read_pla %s;"
+                                                              'strash;'
+                                                              'balance;'                                              
+                                                              'balance;'
+                                                              'balance;'
+                                                              'balance;'
+                                                              'balance;'                                              
+                                                              'balance;'
+                                                              'balance;'
+                                                              'balance;'
+                                                              'balance;'                                              
+                                                              'balance;'
+                                                              'balance;'
+                                                              'balance;'
+                                                              "write %s\'" % (arquivo_pla,nome_aig)),
                                            stdout=subprocess.PIPE)
     # O retorno desta funcao sera [0] = stdout e [1] = sterr (erro)
     return abc_cmd.communicate()
@@ -35,9 +35,9 @@ def gera_abc_aig(arquivo_pla, nome_aig, cmds=False):
     tempo_inicial = time.time()
 
     if not cmds:
-        comando = "./abc -c \'read_pla %s; strash; write %s\'" % (arquivo_pla, nome_aig)
+        comando = "./tools/abc -c \'read_pla %s; strash; write %s\'" % (arquivo_pla, nome_aig)
     else:
-        comando = "./abc -c \'read_pla %s; strash; %swrite %s\'" % (arquivo_pla, "".join(["%s; " % i for i in cmds]), nome_aig)
+        comando = "./tools/abc -c \'read_pla %s; strash; %swrite %s\'" % (arquivo_pla, "".join(["%s; " % i for i in cmds]), nome_aig)
 
     abc_cmd = subprocess.Popen(shlex.split(comando), stdout=subprocess.PIPE)
     # O retorno desta funcao sera [0] = stdout e [1] = sterr (erro)
@@ -61,8 +61,8 @@ def faz_resyn2(aig_path, aig_out_path="", substitui_original=False):
     else:
         out = aig_out_path
 
-    comando = "./abc -c \'read %s; resyn2; resyn2; resyn2; resyn2; resyn2; resyn2; resyn2; resyn2; resyn2; resyn2;" \
-              "write %s\'" % (aig_path, out)
+    comando = "./tools/abc -c \'read %s; resyn2; resyn2; resyn2; resyn2; resyn2; resyn2; resyn2; resyn2; resyn2; " \
+              "resyn2; write %s\'" % (aig_path, out)
 
     abc_cmd = subprocess.Popen(shlex.split(comando), stdout=subprocess.PIPE)
     # O retorno desta funcao sera [0] = stdout e [1] = sterr (erro)
@@ -81,7 +81,7 @@ def pega_valor_ps(saida_abc, string_busca, espaco_campo):
 
 
 def get_abc_ps_aig(aig_path):
-    abc_cmd_aig = subprocess.Popen(shlex.split('./abc -c \'&read %s;'
+    abc_cmd_aig = subprocess.Popen(shlex.split('./tools/abc -c \'&read %s;'
                                                '&ps;\'' % aig_path),
                                    stdout=subprocess.PIPE)
     saida_abc = abc_cmd_aig.communicate()
@@ -116,7 +116,7 @@ def get_mltest_values(aig_path, pla_path):
 
 def abc_mltest_aig(arquivo_aig, arquivo_pla):
 
-    abc_cmd_aig = subprocess.Popen(shlex.split('./abc -c \'&read %s;'
+    abc_cmd_aig = subprocess.Popen(shlex.split('./tools/abc -c \'&read %s;'
                                                           '&ps;'
                                                           '&mltest %s\'' % (arquivo_aig, arquivo_pla)),
               stdout=subprocess.PIPE)

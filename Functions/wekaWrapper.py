@@ -10,7 +10,6 @@ from Functions.pla import pla_obj_factory
 from subprocess import check_output
 
 
-
 def pla_obj_to_arff(pla, gera_arquivo=False, unique=False, path="tmp_iwls2020/ARFF"):
     # Retira os repetidos
     if unique:
@@ -78,7 +77,7 @@ def wekatree_to_termos(wekatree, qt_inputs):
 
 
 def get_weka_output(pla_obj, options, classificador="J48", faz_cross=False):
-    weka_default_call = ['java', '-jar', 'weka_java.jar', 'tmp_iwls2020/ARFF/%s.arff' % pla_obj.get_nome(),
+    weka_default_call = ['java', '-jar', 'tools/weka_java.jar', '../tmp_iwls2020/ARFF/%s.arff' % pla_obj.get_nome(),
                          classificador]
     if faz_cross:
         cross = "true"
@@ -89,6 +88,7 @@ def get_weka_output(pla_obj, options, classificador="J48", faz_cross=False):
 
     for opt in options:
         weka_default_call.append(opt)
+
     weka_output = check_output(weka_default_call, stderr=subprocess.DEVNULL)
 
     return weka_output
@@ -117,16 +117,16 @@ def get_weka_part_output(pla_obj, options, faz_cross=False, gera_arquivo=False, 
 
 def get_weka_j48_output(pla_obj, options, faz_cross=False, gera_arquivo=False, nome_arquivo=""):
 
-    part_output = get_weka_output(pla_obj, options, "J48", faz_cross)
+    j48_output = get_weka_output(pla_obj, options, "J48", faz_cross)
 
     if gera_arquivo:
         if not nome_arquivo:
             nome_arquivo = "%s-%s" % (pla_obj.get_nome(), "".join(options))
 
         with open("tmp_iwls2020/J48/%s.j48" % nome_arquivo, "w") as arquivo:
-            arquivo.write(part_output.decode())
+            arquivo.write(j48_output.decode())
 
-    return {"output": part_output, "nome_arquivo": nome_arquivo}
+    return {"output": j48_output, "nome_arquivo": nome_arquivo}
 
 
 def to_aig_wrapper(classifier, pla_obj, nome_arquivo):
@@ -138,18 +138,19 @@ def to_aig_wrapper(classifier, pla_obj, nome_arquivo):
         j48pla = j48tree_to_pla("%s.j48" % nome_arquivo,
                                 pla_obj.get_qt_inputs(),
                                 pla_obj.get_qt_outputs())[0]
-        j48pla_to_aig("tmp_iwls2020/J48_PLA/%s" % j48pla, "../tmp_iwls2020/J48_AIG/", True)
+        j48pla_to_aig("tmp_iwls2020/J48_PLA/%s" % j48pla, "tmp_iwls2020/J48_AIG/", True)
         return "tmp_iwls2020/J48_AIG/%s.aig" % nome_arquivo
 
 
 def part_to_aig(pla_obj, nome_part):
-    comando = ['./parttoaag', str(pla_obj.get_qt_inputs()), nome_part]
+    comando = ['./tools/parttoaag', str(pla_obj.get_qt_inputs()), nome_part]
     output = check_output(comando, stderr=subprocess.DEVNULL)
 
-    comando2 = ['./aigtoaig', "tmp_iwls2020/AAG/%s.aag" % nome_part, "tmp_iwls2020/PART_AIG/%s.aig" % nome_part]
+    comando2 = ['./tools/aigtoaig', "tmp_iwls2020/AAG/%s.aag" % nome_part, "tmp_iwls2020/PART_AIG/%s.aig" % nome_part]
     output2 = check_output(comando2, stderr=subprocess.DEVNULL)
 
-def j48pla_to_aig(j48pla_path, path="tmp_iwls2020/J48_AIG/", faz_resyn2=False):
+
+def j48pla_to_aig(j48pla_path, path="../tmp_iwls2020/J48_AIG/", faz_resyn2=False):
     if faz_resyn2:
         resyns = ["resyn2", "resyn2", "resyn2", "resyn2", "resyn2", "resyn2", "resyn2", "resyn2", "resyn2", "resyn2"]
         return gera_abc_aig(j48pla_path, "%s%s" % (path, j48pla_path.split("/")[-1].replace(".pla", ".aig")), resyns)
@@ -451,7 +452,7 @@ def gera_melhor_aig(pla_obj,
     shutil.copy(melhor, filename)
 
     if persist:
-        shutil.copytree("../tmp_iwls2020", "persist_iwls2020", dirs_exist_ok=True)
+        shutil.copytree("tmp_iwls2020", "persist_iwls2020", dirs_exist_ok=True)
 
     if verbose:
         for linha in linhas:
@@ -459,7 +460,7 @@ def gera_melhor_aig(pla_obj,
 
     # Clean tmp_iwls2020 directory
     if not tmp_clean:
-        for root, dirs, files in os.walk("../tmp_iwls2020", topdown=False):
+        for root, dirs, files in os.walk("tmp_iwls2020", topdown=False):
             for name in files:
                 os.remove(os.path.join(root, name))
 
