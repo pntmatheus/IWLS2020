@@ -9,9 +9,9 @@ The PART classifier creates a set of rules that the developed software converts 
 Requirements:
 * Python 3.8;
 * Java 8 or later;
-“abc.rc” at the same directory of “IWLS2020.py”;
-Compile abc-master at ~/tools/sources/abc-master;
-Copy the generated abc binary to ~/tools (with “abc” name);
-Compile “parttoaag” and “aigtoaig” or, if possible, give exec permission to respective binaries (chmod +x on Linux);
-At tools folder, it’s mandatory to naming binaries as: “abc”, “parttoaag” and “aigtoaig”;
-ABC tool source is at tools/sources, but the current project version can be view at: https://github.com/berkeley-abc/abc 
+* “abc.rc” at the same directory of “IWLS2020.py”;
+* Compile abc-master at ~/tools/sources/abc-master;
+* Copy the generated abc binary to ~/tools (with “abc” name);
+* Compile “parttoaag” and “aigtoaig” or, if possible, give exec permission to respective binaries (chmod +x on Linux);
+* At tools folder, it’s mandatory to naming binaries as: “abc”, “parttoaag” and “aigtoaig”;
+* ABC tool source is at tools/sources, but the current project version can be view at: https://github.com/berkeley-abc/abc 
