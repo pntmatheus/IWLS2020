@@ -16,7 +16,7 @@ Requirements:
 * At tools folder, it’s mandatory to naming binaries as: “abc”, “parttoaag” and “aigtoaig”;
 * ABC tool source is at tools/sources, but the current project version can be view at: https://github.com/berkeley-abc/abc 
 
-usage: IWLS2020.py [-h] -i <file.pla> [-o </my/path/name.aig>] [-v] [--mltest pla_file1 [pla_fileN ...]] [--supress]
+usage: [...]IWLS2020.py [-h] -i <file.pla> [-o </my/path/name.aig>] [-v] [--mltest pla_file1 [pla_fileN ...]] [--supress]
                    [--persist] [--dont-clean-tmp]
 
 IWLS 2020 Contest AIG function predictor
