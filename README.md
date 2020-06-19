@@ -22,7 +22,7 @@ usage: `IWLS2020.py [-h] -i <file.pla> [-o </my/path/name.aig>] [-v] [--mltest p
 IWLS 2020 Contest AIG function predictor
 
 optional arguments:
-  -h, --help            show this help message and exit
+  `-h, --help            show this help message and exit`
   -i <file.pla>         Input PLA file path
   -o </my/path/name.aig>
                         Output AIG name
