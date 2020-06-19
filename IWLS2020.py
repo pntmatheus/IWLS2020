@@ -29,7 +29,7 @@ def check_tmp_directory():
 def main(argv):
 
     parser = argparse.ArgumentParser(description="IWLS 2020 Contest AIG function predictor",
-                                     epilog="Usage example: IWLS2020.py -i ex00.pla -o my_ex00.aig")
+                                     epilog="Usage example: python3.8 IWLS2020.py -i ex00.pla -o my_ex00.aig")
     parser.add_argument("-i", help="Input PLA file path", dest="input_file", required=True, metavar="<file.pla>")
     parser.add_argument("-o", help="Output AIG name", dest="output_file", metavar="</my/path/name.aig>")
     parser.add_argument("-v", "--verbose",
