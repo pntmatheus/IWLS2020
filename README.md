@@ -15,21 +15,19 @@ Requirements:
 * Compile “parttoaag” and “aigtoaig” or, if possible, give exec permission to respective binaries (chmod +x on Linux);
 * At tools folder, it’s mandatory to naming binaries as: “abc”, “parttoaag” and “aigtoaig”;
 * ABC tool source is at tools/sources, but the current project version can be view at: https://github.com/berkeley-abc/abc 
-
-usage: `IWLS2020.py [-h] -i <file.pla> [-o </my/path/name.aig>] [-v] [--mltest pla_file1 [pla_fileN ...]]` 
-`[--supress] [--persist] [--dont-clean-tmp]`
+```
+usage: IWLS2020.py [-h] -i <file.pla> [-o </my/path/name.aig>] [-v] [--mltest pla_file1 [pla_fileN ...]] 
+[--supress] [--persist] [--dont-clean-tmp]
 
 IWLS 2020 Contest AIG function predictor
 
 optional arguments:
-  `-h, --help            show this help message and exit`
-    -i <file.pla>             Input PLA file path
-    -o </my/path/name.aig>    Output AIG name
-  -v, --verbose         Verbose mode, output all options tested by tool in the format
-                        "<accuracy;;AIG_ANDs;;AIG_Depth;;runtime;;tmp_file>" (Default mode) or
-                        "<accuracy;;AIG_ANDs;;mltest_file1;;...;;mltest_fileN;;AIG_Depth;;runtime;;tmp_file>"
-                        (Mltest mode)
-  ```
+  -h, --help                          show this help message and exit
+  -i <file.pla>                       input PLA file path
+  -o </my/path/name.aig>              output AIG name
+  -v, --verbose                       Verbose mode, output all options tested by tool in the format
+                                      "<accuracy;;AIG_ANDs;;AIG_Depth;;runtime;;tmp_file>" (Default mode) or
+                                      "<accuracy;;AIG_ANDs;;mltest_file1;;...;;mltest_fileN;;AIG_Depth;;runtime;;tmp_file>" (Mltest mode)
   --mltest pla_file1 [pla_fileN ...]  Especial mode to eval generated AIG against PLA files
   --supress                           Supress output messages
   --persist                           Persist all option files in persist_iwls folder
