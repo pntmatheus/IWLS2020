@@ -23,9 +23,8 @@ IWLS 2020 Contest AIG function predictor
 
 optional arguments:
   `-h, --help            show this help message and exit`
-  -i <file.pla>         Input PLA file path
-  -o </my/path/name.aig>
-                        Output AIG name
+    -i <file.pla>             Input PLA file path
+    -o </my/path/name.aig>    Output AIG name
   -v, --verbose         Verbose mode, output all options tested by tool in the format
                         "<accuracy;;AIG_ANDs;;AIG_Depth;;runtime;;tmp_file>" (Default mode) or
                         "<accuracy;;AIG_ANDs;;mltest_file1;;...;;mltest_fileN;;AIG_Depth;;runtime;;tmp_file>"
