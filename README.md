@@ -19,7 +19,8 @@ Requirements:
 * Copy the generated abc binary to ~/tools (with “abc” name);
 * Compile “parttoaag” and “aigtoaig” or, if possible, give exec permission to respective binaries (chmod +x on Linux);
 * At tools folder, it’s mandatory to naming binaries as: “abc”, “parttoaag” and “aigtoaig”;
-* ABC tool source is at tools/sources, but the current project version can be view at: https://github.com/berkeley-abc/abc 
+* ABC tool source is at tools/sources, but the current project version can be view at: https://github.com/berkeley-abc/abc;
+* The SO used for results was Ubuntu 18.04 64-bits.
 ```
 usage: IWLS2020.py [-h] -i <file.pla> [-o </my/path/name.aig>] [-v] [--mltest pla_file1 [pla_fileN ...]] 
 [--supress] [--persist] [--dont-clean-tmp]
@@ -40,3 +41,10 @@ optional arguments:
   
 Usage example: python3.8 IWLS2020.py -i ex00.pla -o my_ex00.aig
 ```
+
+This solution was developed by following team:
+* Guilherme Barbosa Manske - Master Student - Universidade Federal de Pelotas
+* Matheus Ferreira Pontes - PhD Student  - Universidade Federal de Pelotas
+* Leomar Soares da Rosa Junior - Associate Professor - Universidade Federal de Pelotas
+* Marilton Sanchotene de Aguiar - Associate Professor - Universidade Federal de Pelotas
+* Paulo Francisco Butzen - Associate Professor - Universidade Federal do Rio Grande do Sul
