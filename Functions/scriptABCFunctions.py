@@ -47,7 +47,6 @@ def gera_abc_aig(arquivo_pla, nome_aig, cmds=False):
     retorno = {"stdout": exec_abc[0],
                "erro": exec_abc[1],
                "tempo": tempo_final}
-
     return retorno
 
 
@@ -157,3 +156,18 @@ def abc_mltest_aig(arquivo_aig, arquivo_pla):
         "per_acerto": percentual_acerto
     }
     return output
+
+
+def circuit_abc_map(lib, circ_description, out_name):
+    abc_cmd = subprocess.Popen(shlex.split('./tools/abc -c \'read %s;'
+                                                            'read %s;'
+                                                            'map;'
+                                                            'write_verilog %s\'' % (lib, circ_description, out_name)),
+                               stdout=subprocess.PIPE)
+
+    exec_abc = abc_cmd.communicate()
+
+    abc_out = {"stdout": exec_abc[0],
+               "error": exec_abc[1]}
+
+    return abc_out
